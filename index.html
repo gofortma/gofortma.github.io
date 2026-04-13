@@ -88,7 +88,7 @@
       <span class="solved-badge" id="b2">✓ solved</span>
     </div>
     <p class="description">Space agencies sometimes intercept mysterious signals from deep space. This alien transmission uses a Caesar cipher — each letter is shifted forward in the alphabet. Use the slider below to decode it.</p>
-    <div class="clue big">TFDUHB</div>
+    <div class="clue big">VHFUHW</div>
     <div class="caesar-tool">
       <label>Shift:</label>
       <input type="range" min="1" max="25" value="3" id="shift-slider" oninput="updateCaesar()">
@@ -303,7 +303,7 @@
   }
 
   function updateCaesar() {
-    const cipher = "TFDUHB";
+    const cipher = "VHFUHW";
     const shift = parseInt(document.getElementById('shift-slider').value);
     document.getElementById('shift-val').textContent = shift;
     let decoded = '';
