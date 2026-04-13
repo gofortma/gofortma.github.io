@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capture The Flag Intro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Capture The Flag Intro</h1>
+        <p>Find the flags hidden in these challenges!</p>
+    </header>
+    <main>
+        <section id="challenge1">
+            <h2>Challenge 1: View Source</h2>
+            <p>Find the flag hidden in this page's source code.</p>
+            <!-- FLAG{view_source_master} -->
+        </section>
+        <section id="challenge2">
+            <h2>Challenge 2: Math Time</h2>
+            <p>What is 5 + 3? Enter the answer below.</p>
+            <input type="text" id="mathAnswer" placeholder="Your answer">
+            <button onclick="checkMath()">Submit</button>
+            <p id="mathResult"></p>
+        </section>
+        <section id="challenge3">
+            <h2>Challenge 3: Riddle Me This</h2>
+            <p>What has keys but can't open locks?</p>
+            <input type="text" id="riddleAnswer" placeholder="Your answer">
+            <button onclick="checkRiddle()">Submit</button>
+            <p id="riddleResult"></p>
+        </section>
+        <section id="challenge4">
+            <h2>Challenge 4: Hidden Message</h2>
+            <p>Decode this: RmxhZ3tjcnlwdG9faXNfZnVu}</p>
+            <input type="text" id="cryptoAnswer" placeholder="Your answer">
+            <button onclick="checkCrypto()">Submit</button>
+            <p id="cryptoResult"></p>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
