@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Capture the Flag — Beginner Challenge</title>
+<title>Kratos Space Symposium Beginner Capture the Flag Challenge</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: #0d1117; color: #c9d1d9; font-family: 'Courier New', monospace; min-height: 100vh; padding: 2rem 1rem; }
@@ -50,11 +50,11 @@
 </head>
 <body>
 <div id="root">
-  <h1>🚩 Capture the Flag</h1>
-  <p class="subtitle">Beginner challenge · No coding required · Just curiosity</p>
+  <h1>🚩 Kratos Space Symposium - Capture the Flag</h1>
+  <p class="subtitle">Welcome, Agent. Your mission is to capture all 8 flags hidden in this challenge. Each stage will test your problem-solving skills and introduce you to common cybersecurity techniques. Are you ready to begin?</p>
 
   <div class="progress-wrap"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
-  <div class="progress-label" id="prog-label">0 / 5 captured</div>
+  <div class="progress-label" id="prog-label">0 / 8 captured</div>
 
   <!-- STAGE 1 -->
   <div class="card" id="s1">
@@ -63,12 +63,12 @@
       <span class="card-title">The Hidden Comment</span>
       <span class="solved-badge" id="b1">✓ solved</span>
     </div>
-    <p class="description">Hackers often hide messages in plain sight. Read the poem below — the flag is spelled by the <strong>first letter of each line</strong>.</p>
+    <p class="description">In the vastness of space, messages can be hidden in plain sight. Read the transmission below — the flag is spelled by the <strong>first letter of each line</strong>.</p>
     <div class="clue">
-      Oceans are vast and blue.<br>
-      Pretty shells line the shore.<br>
-      Each wave crashes gently in.<br>
-      Nightly, the stars reflect below.
+      Orbiting satellites provide essential data.<br>
+      Powerful signals reach every strata.<br>
+      Earthbound stations decode the chatter.<br>
+      Navigation relies on this matter.
     </div>
     <p class="tip">Take the first letter of each of the 4 lines. Wrap your answer like: <code>FLAG{yourword}</code></p>
     <div class="input-row">
@@ -84,10 +84,10 @@
   <div class="card locked" id="s2">
     <div class="card-header">
       <span class="stage-badge">STAGE 2</span>
-      <span class="card-title">Scrambled Message</span>
+      <span class="card-title">Alien Transmission</span>
       <span class="solved-badge" id="b2">✓ solved</span>
     </div>
-    <p class="description">Julius Caesar shifted letters to hide messages. Each letter is replaced by one that's shifted forward in the alphabet. Use the slider below to decode it.</p>
+    <p class="description">Space agencies sometimes intercept mysterious signals from deep space. This alien transmission uses a Caesar cipher — each letter is shifted forward in the alphabet. Use the slider below to decode it.</p>
     <div class="clue big">TFDUHB</div>
     <div class="caesar-tool">
       <label>Shift:</label>
@@ -102,7 +102,7 @@
       <button onclick="check(2)">Submit</button>
     </div>
     <button class="hint-btn" onclick="toggleHint(2)">show hint</button>
-    <div class="hint-text" id="h2">Caesar himself used a shift of 3. Try that. What word does it spell?</div>
+    <div class="hint-text" id="h2">Aliens might use a shift of 3, just like Caesar. What word does it spell?</div>
     <div class="feedback" id="f2"></div>
   </div>
 
@@ -113,7 +113,7 @@
       <span class="card-title">Binary Clue</span>
       <span class="solved-badge" id="b3">✓ solved</span>
     </div>
-    <p class="description">Computers store everything as 1s and 0s. Each group of 8 bits (called a byte) represents one letter. Match each group to the table below.</p>
+    <p class="description">Space probes send telemetry data back to Earth in binary format. Each group of 8 bits (called a byte) represents one letter. Match each group to the table below.</p>
     <div class="clue" style="font-size:15px; letter-spacing:0.05em; text-align:center;">
       01001011 &nbsp;&nbsp; 01000101 &nbsp;&nbsp; 01011001
     </div>
@@ -143,7 +143,7 @@
       <span class="card-title">Backwards Message</span>
       <span class="solved-badge" id="b4">✓ solved</span>
     </div>
-    <p class="description">Sometimes data is stored or transmitted in reverse order. This word has been flipped. Reverse it to reveal the hidden word.</p>
+    <p class="description">Satellite coordinates are sometimes transmitted in reverse order for security. This coordinate set has been flipped. Reverse it to reveal the correct location code.</p>
     <div class="clue big">EDOM</div>
     <p class="tip">Read it right-to-left. Wrap your answer: <code>FLAG{yourword}</code></p>
     <div class="input-row">
@@ -162,7 +162,7 @@
       <span class="card-title">The Final Code</span>
       <span class="solved-badge" id="b5">✓ solved</span>
     </div>
-    <p class="description">In this cipher, A=1, B=2, C=3 ... Z=26. Decode the numbers below to reveal the final word.</p>
+    <p class="description">NASA uses alphanumeric codes for space missions where A=1, B=2, C=3 ... Z=26. Decode the mission numbers below to reveal the operation name.</p>
     <div class="clue big">8 &nbsp; 5 &nbsp; 18 &nbsp; 15</div>
     <p class="tip">What 4-letter word do those numbers spell? Wrap it: <code>FLAG{yourword}</code></p>
     <div class="input-row">
@@ -174,16 +174,78 @@
     <div class="feedback" id="f5"></div>
   </div>
 
+  <!-- STAGE 6 -->
+  <div class="card locked" id="s6">
+    <div class="card-header">
+      <span class="stage-badge">STAGE 6</span>
+      <span class="card-title">Web Inspector Challenge</span>
+      <span class="solved-badge" id="b6">✓ solved</span>
+    </div>
+    <p class="description">Mission control engineers sometimes need to use browser tools to inspect satellite control panels and debug telemetry websites. Use your browser's web inspector (right-click > Inspect) to find the hidden flag in this control interface.</p>
+    <div id="hidden-flag" style="display:none;">FLAG{inspector}</div>
+    <p class="tip">Look for elements that are hidden or in comments. Wrap your answer: <code>FLAG{yourword}</code></p>
+    <div class="input-row">
+      <input id="i6" placeholder="FLAG{...}" onkeydown="if(event.key==='Enter')check(6)" />
+      <button onclick="check(6)">Submit</button>
+    </div>
+    <button class="hint-btn" onclick="toggleHint(6)">show hint</button>
+    <div class="hint-text" id="h6">Open the Elements tab in DevTools and search for "FLAG" or look for hidden divs.</div>
+    <div class="feedback" id="f6"></div>
+  </div>
+
+  <!-- STAGE 7 -->
+  <div class="card locked" id="s7">
+    <div class="card-header">
+      <span class="stage-badge">STAGE 7</span>
+      <span class="card-title">Base64 Decoding</span>
+      <span class="solved-badge" id="b7">✓ solved</span>
+    </div>
+    <p class="description">Space mission data is often encoded in Base64 to ensure safe transmission through the vacuum of space. The satellite log below is Base64 encoded. Decode it to find the mission status word.</p>
+    <div class="clue big">RkxBR3toYXJkZXJ9</div>
+    <p class="tip">Use an online Base64 decoder or learn the algorithm. Wrap your answer: <code>FLAG{yourword}</code></p>
+    <div class="input-row">
+      <input id="i7" placeholder="FLAG{...}" onkeydown="if(event.key==='Enter')check(7)" />
+      <button onclick="check(7)">Submit</button>
+    </div>
+    <button class="hint-btn" onclick="toggleHint(7)">show hint</button>
+    <div class="hint-text" id="h7">Base64 decoding reveals the flag directly. Try it!</div>
+    <div class="feedback" id="f7"></div>
+  </div>
+
+  <!-- STAGE 8 -->
+  <div class="card locked" id="s8">
+    <div class="card-header">
+      <span class="stage-badge">STAGE 8</span>
+      <span class="card-title">Hex to ASCII</span>
+      <span class="solved-badge" id="b8">✓ solved</span>
+    </div>
+    <p class="description">Spacecraft send telemetry data back to mission control in hexadecimal format. Pairs of hex digits form bytes that can be converted to ASCII characters. Decode this telemetry stream to reveal the final command.</p>
+    <div class="clue big">464c41477b6d61737465727d</div>
+    <p class="tip">Use an online hex to ASCII converter. Each pair of hex digits is one character. Wrap your answer: <code>FLAG{yourword}</code></p>
+    <div class="input-row">
+      <input id="i8" placeholder="FLAG{...}" onkeydown="if(event.key==='Enter')check(8)" />
+      <button onclick="check(8)">Submit</button>
+    </div>
+    <button class="hint-btn" onclick="toggleHint(8)">show hint</button>
+    <div class="hint-text" id="h8">Convert hex to text: 46= F, 4c= L, etc. It spells the flag!</div>
+    <div class="feedback" id="f8"></div>
+  </div>
+
   <!-- VICTORY -->
   <div class="victory" id="victory">
     <div class="trophy">🏆</div>
     <h2>Mission Complete, Agent!</h2>
-    <p style="margin-bottom:1rem;">You decoded all 5 challenges. Here is your master flag:</p>
-    <div class="final-flag">FLAG{OPEN_SECRET_KEY_MODE_HERO}</div>
+    <p style="margin-bottom:1rem;">You decoded all 8 challenges. Here is your master flag:</p>
+    <div class="final-flag">FLAG{OPEN_SECRET_KEY_MODE_HERO_INSPECTOR_HARDER_MASTER}</div>
     <p style="margin-top:1.5rem; color:#3fb950;">
       You just practiced: acrostic steganography, Caesar ciphers,<br>
-      binary decoding, string reversal, and number substitution.<br>
+      binary decoding, string reversal, number substitution, web inspection, Base64 decoding, and hex to ASCII.<br>
       These are real cybersecurity techniques.
+    </p>
+    <p style="margin-top:1.5rem; color:#8b949e;">
+      Ready for more challenges? Check out these awesome CTF platforms:<br>
+      <a href="https://picoctf.org" target="_blank" style="color:#58a6ff;">PicoCTF</a> - Great for beginners<br>
+      <a href="https://www.hackthebox.com" target="_blank" style="color:#58a6ff;">Hack The Box</a> - Advanced challenges
     </p>
   </div>
 </div>
@@ -194,9 +256,12 @@
     2: "secret",
     3: "key",
     4: "mode",
-    5: "hero"
+    5: "hero",
+    6: "inspector",
+    7: "harder",
+    8: "master"
   };
-  const solved = {1:false,2:false,3:false,4:false,5:false};
+  const solved = {1:false,2:false,3:false,4:false,5:false,6:false,7:false,8:false};
 
   function normalize(val) {
     return val.trim().toLowerCase().replace(/^flag\{|\}$/g, '');
@@ -204,9 +269,9 @@
 
   function updateProgress() {
     const n = Object.values(solved).filter(Boolean).length;
-    document.getElementById('prog-fill').style.width = (n / 5 * 100) + '%';
-    document.getElementById('prog-label').textContent = n + ' / 5 captured';
-    if (n === 5) setTimeout(() => { document.getElementById('victory').style.display = 'block'; document.getElementById('victory').scrollIntoView({behavior:'smooth'}); }, 500);
+    document.getElementById('prog-fill').style.width = (n / 8 * 100) + '%';
+    document.getElementById('prog-label').textContent = n + ' / 8 captured';
+    if (n === 8) setTimeout(() => { document.getElementById('victory').style.display = 'block'; document.getElementById('victory').scrollIntoView({behavior:'smooth'}); }, 500);
   }
 
   function check(stage) {
