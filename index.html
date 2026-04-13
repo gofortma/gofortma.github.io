@@ -1,44 +1,258 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Capture The Flag Intro</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capture the Flag — Beginner Challenge</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0d1117; color: #c9d1d9; font-family: 'Courier New', monospace; min-height: 100vh; padding: 2rem 1rem; }
+  #root { max-width: 720px; margin: 0 auto; }
+  h1 { color: #58a6ff; font-size: 22px; margin-bottom: 0.5rem; }
+  .subtitle { color: #8b949e; font-size: 14px; margin-bottom: 2rem; }
+  .progress-wrap { background: #161b22; border-radius: 8px; height: 8px; overflow: hidden; margin-bottom: 0.5rem; border: 1px solid #30363d; }
+  .progress-fill { height: 8px; background: #238636; border-radius: 8px; transition: width 0.5s ease; }
+  .progress-label { font-size: 12px; color: #8b949e; text-align: right; margin-bottom: 2rem; }
+  .card { background: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 1.5rem; margin-bottom: 1.25rem; transition: border-color 0.3s; }
+  .card.solved { border-color: #238636; }
+  .card.locked { opacity: 0.35; pointer-events: none; }
+  .card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
+  .stage-badge { background: #0c447c; color: #79c0ff; font-size: 11px; padding: 3px 10px; border-radius: 20px; }
+  .solved-badge { background: #122d1c; color: #3fb950; font-size: 11px; padding: 3px 10px; border-radius: 20px; display: none; }
+  .card-title { color: #e6edf3; font-size: 16px; font-weight: bold; }
+  .description { font-size: 14px; color: #8b949e; margin-bottom: 1rem; line-height: 1.6; }
+  .clue { background: #0d1117; border-left: 3px solid #1f6feb; border-radius: 4px; padding: 1rem 1.25rem; margin: 1rem 0; font-size: 14px; color: #c9d1d9; line-height: 1.8; }
+  .clue.big { font-size: 22px; letter-spacing: 0.1em; text-align: center; color: #e6edf3; }
+  .input-row { display: flex; gap: 8px; margin-top: 1rem; }
+  .input-row input { flex: 1; background: #0d1117; color: #c9d1d9; border: 1px solid #30363d; border-radius: 6px; padding: 8px 12px; font-family: 'Courier New', monospace; font-size: 14px; outline: none; }
+  .input-row input:focus { border-color: #388bfd; }
+  .input-row button { background: #1f6feb; color: #cae8ff; border: none; border-radius: 6px; padding: 8px 18px; font-size: 14px; cursor: pointer; font-family: 'Courier New', monospace; }
+  .input-row button:hover { background: #388bfd; }
+  .feedback { margin-top: 0.75rem; font-size: 13px; min-height: 18px; }
+  .feedback.ok { color: #3fb950; }
+  .feedback.err { color: #f85149; }
+  .hint-btn { background: none; border: none; color: #58a6ff; font-size: 12px; cursor: pointer; font-family: 'Courier New', monospace; margin-top: 0.75rem; padding: 0; text-decoration: underline; }
+  .hint-text { display: none; font-size: 13px; color: #8b949e; margin-top: 0.5rem; font-style: italic; }
+  .bit-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; font-size: 12px; color: #8b949e; margin: 0.75rem 0; }
+  .bit-grid span.hl { color: #e6b450; }
+  .caesar-tool { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 0.75rem; }
+  .caesar-tool label { font-size: 13px; color: #8b949e; }
+  .caesar-tool input[type=range] { width: 130px; accent-color: #1f6feb; }
+  .caesar-out { font-size: 16px; color: #e6b450; letter-spacing: 0.08em; }
+  .tip { font-size: 12px; color: #8b949e; margin-top: 0.5rem; }
+  .tip code { color: #e6b450; }
+  .victory { display: none; background: #0d2d0d; border: 1px solid #238636; border-radius: 10px; padding: 2.5rem; text-align: center; margin-top: 1rem; }
+  .victory h2 { color: #3fb950; font-size: 22px; margin-bottom: 1rem; }
+  .victory .final-flag { font-size: 18px; color: #e6b450; margin: 1rem 0; border: 1px dashed #e6b450; display: inline-block; padding: 0.5rem 1.5rem; border-radius: 6px; }
+  .victory p { color: #8b949e; font-size: 14px; line-height: 1.7; }
+  .trophy { font-size: 48px; margin-bottom: 1rem; }
+</style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to Capture The Flag Intro</h1>
-        <p>Find the flags hidden in these challenges!</p>
-    </header>
-    <main>
-        <section id="challenge1">
-            <h2>Challenge 1: View Source</h2>
-            <p>Find the flag hidden in this page's source code.</p>
-            <!-- FLAG{view_source_master} -->
-        </section>
-        <section id="challenge2">
-            <h2>Challenge 2: Math Time</h2>
-            <p>What is 5 + 3? Enter the answer below.</p>
-            <input type="text" id="mathAnswer" placeholder="Your answer">
-            <button onclick="checkMath()">Submit</button>
-            <p id="mathResult"></p>
-        </section>
-        <section id="challenge3">
-            <h2>Challenge 3: Riddle Me This</h2>
-            <p>What has keys but can't open locks?</p>
-            <input type="text" id="riddleAnswer" placeholder="Your answer">
-            <button onclick="checkRiddle()">Submit</button>
-            <p id="riddleResult"></p>
-        </section>
-        <section id="challenge4">
-            <h2>Challenge 4: Hidden Message</h2>
-            <p>Decode this: RmxhZ3tjcnlwdG9faXNfZnVu}</p>
-            <input type="text" id="cryptoAnswer" placeholder="Your answer">
-            <button onclick="checkCrypto()">Submit</button>
-            <p id="cryptoResult"></p>
-        </section>
-    </main>
-    <script src="script.js"></script>
+<div id="root">
+  <h1>🚩 Capture the Flag</h1>
+  <p class="subtitle">Beginner challenge · No coding required · Just curiosity</p>
+
+  <div class="progress-wrap"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
+  <div class="progress-label" id="prog-label">0 / 5 captured</div>
+
+  <!-- STAGE 1 -->
+  <div class="card" id="s1">
+    <div class="card-header">
+      <span class="stage-badge">STAGE 1</span>
+      <span class="card-title">The Hidden Comment</span>
+      <span class="solved-badge" id="b1">✓ solved</span>
+    </div>
+    <p class="description">Hackers often hide messages in plain sight. Read the poem below — the flag is spelled by the <strong>first letter of each line</strong>.</p>
+    <div class="clue">
+      Oceans are vast and blue.<br>
+      Pretty shells line the shore.<br>
+      Each wave crashes gently in.<br>
+      Nightly, the stars reflect below.
+    </div>
+    <p class="tip">Take the first letter of each of the 4 lines. Wrap your answer like: <code>FLAG{yourword}</code></p>
+    <div class="input-row">
+      <input id="i1" placeholder="FLAG{...}" onkeydown="if(event.key==='Enter')check(1)" />
+      <button onclick="check(1)">Submit</button>
+    </div>
+    <button class="hint-btn" onclick="toggleHint(1)">show hint</button>
+    <div class="hint-text" id="h1">Look at: O, P, E, N — put those 4 letters together.</div>
+    <div class="feedback" id="f1"></div>
+  </div>
+
+  <!-- STAGE 2 -->
+  <div class="card locked" id="s2">
+    <div class="card-header">
+      <span class="stage-badge">STAGE 2</span>
+      <span class="card-title">Scrambled Message</span>
+      <span class="solved-badge" id="b2">✓ solved</span>
+    </div>
+    <p class="description">Julius Caesar shifted letters to hide messages. Each letter is replaced by one that's shifted forward in the alphabet. Use the slider below to decode it.</p>
+    <div class="clue big">TFDUHB</div>
+    <div class="caesar-tool">
+      <label>Shift:</label>
+      <input type="range" min="1" max="25" value="3" id="shift-slider" oninput="updateCaesar()">
+      <span id="shift-val" style="font-size:13px; color:#8b949e; min-width:20px;">3</span>
+      <span style="color:#8b949e;">→</span>
+      <span class="caesar-out" id="caesar-out"></span>
+    </div>
+    <p class="tip">Once you find the real word, wrap it: <code>FLAG{yourword}</code></p>
+    <div class="input-row">
+      <input id="i2" placeholder="FLAG{...}" onkeydown="if(event.key==='Enter')check(2)" />
+      <button onclick="check(2)">Submit</button>
+    </div>
+    <button class="hint-btn" onclick="toggleHint(2)">show hint</button>
+    <div class="hint-text" id="h2">Caesar himself used a shift of 3. Try that. What word does it spell?</div>
+    <div class="feedback" id="f2"></div>
+  </div>
+
+  <!-- STAGE 3 -->
+  <div class="card locked" id="s3">
+    <div class="card-header">
+      <span class="stage-badge">STAGE 3</span>
+      <span class="card-title">Binary Clue</span>
+      <span class="solved-badge" id="b3">✓ solved</span>
+    </div>
+    <p class="description">Computers store everything as 1s and 0s. Each group of 8 bits (called a byte) represents one letter. Match each group to the table below.</p>
+    <div class="clue" style="font-size:15px; letter-spacing:0.05em; text-align:center;">
+      01001011 &nbsp;&nbsp; 01000101 &nbsp;&nbsp; 01011001
+    </div>
+    <div class="bit-grid">
+      <span>01000001 = A</span><span>01000010 = B</span><span>01000011 = C</span><span>01000100 = D</span>
+      <span>01000101 = E</span><span>01000110 = F</span><span>01000111 = G</span><span>01001000 = H</span>
+      <span>01001001 = I</span><span>01001010 = J</span><span class="hl">01001011 = K</span><span>01001100 = L</span>
+      <span>01001101 = M</span><span>01001110 = N</span><span>01001111 = O</span><span>01010000 = P</span>
+      <span>01010001 = Q</span><span>01010010 = R</span><span>01010011 = S</span><span>01010100 = T</span>
+      <span>01010101 = U</span><span>01010110 = V</span><span>01010111 = W</span><span>01011000 = X</span>
+      <span class="hl">01011001 = Y</span><span>01011010 = Z</span>
+    </div>
+    <p class="tip">Match all 3 groups to get a 3-letter word. Wrap it: <code>FLAG{yourword}</code></p>
+    <div class="input-row">
+      <input id="i3" placeholder="FLAG{...}" onkeydown="if(event.key==='Enter')check(3)" />
+      <button onclick="check(3)">Submit</button>
+    </div>
+    <button class="hint-btn" onclick="toggleHint(3)">show hint</button>
+    <div class="hint-text" id="h3">01001011 → K, 01000101 → E, 01011001 → ?</div>
+    <div class="feedback" id="f3"></div>
+  </div>
+
+  <!-- STAGE 4 -->
+  <div class="card locked" id="s4">
+    <div class="card-header">
+      <span class="stage-badge">STAGE 4</span>
+      <span class="card-title">Backwards Message</span>
+      <span class="solved-badge" id="b4">✓ solved</span>
+    </div>
+    <p class="description">Sometimes data is stored or transmitted in reverse order. This word has been flipped. Reverse it to reveal the hidden word.</p>
+    <div class="clue big">EDOM</div>
+    <p class="tip">Read it right-to-left. Wrap your answer: <code>FLAG{yourword}</code></p>
+    <div class="input-row">
+      <input id="i4" placeholder="FLAG{...}" onkeydown="if(event.key==='Enter')check(4)" />
+      <button onclick="check(4)">Submit</button>
+    </div>
+    <button class="hint-btn" onclick="toggleHint(4)">show hint</button>
+    <div class="hint-text" id="h4">E-D-O-M backwards is M-O-D-E. What word is that?</div>
+    <div class="feedback" id="f4"></div>
+  </div>
+
+  <!-- STAGE 5 -->
+  <div class="card locked" id="s5">
+    <div class="card-header">
+      <span class="stage-badge">STAGE 5</span>
+      <span class="card-title">The Final Code</span>
+      <span class="solved-badge" id="b5">✓ solved</span>
+    </div>
+    <p class="description">In this cipher, A=1, B=2, C=3 ... Z=26. Decode the numbers below to reveal the final word.</p>
+    <div class="clue big">8 &nbsp; 5 &nbsp; 18 &nbsp; 15</div>
+    <p class="tip">What 4-letter word do those numbers spell? Wrap it: <code>FLAG{yourword}</code></p>
+    <div class="input-row">
+      <input id="i5" placeholder="FLAG{...}" onkeydown="if(event.key==='Enter')check(5)" />
+      <button onclick="check(5)">Submit</button>
+    </div>
+    <button class="hint-btn" onclick="toggleHint(5)">show hint</button>
+    <div class="hint-text" id="h5">8=H, 5=E, 18=R, 15=O. Put them together!</div>
+    <div class="feedback" id="f5"></div>
+  </div>
+
+  <!-- VICTORY -->
+  <div class="victory" id="victory">
+    <div class="trophy">🏆</div>
+    <h2>Mission Complete, Agent!</h2>
+    <p style="margin-bottom:1rem;">You decoded all 5 challenges. Here is your master flag:</p>
+    <div class="final-flag">FLAG{OPEN_SECRET_KEY_MODE_HERO}</div>
+    <p style="margin-top:1.5rem; color:#3fb950;">
+      You just practiced: acrostic steganography, Caesar ciphers,<br>
+      binary decoding, string reversal, and number substitution.<br>
+      These are real cybersecurity techniques.
+    </p>
+  </div>
+</div>
+
+<script>
+  const answers = {
+    1: "open",
+    2: "secret",
+    3: "key",
+    4: "mode",
+    5: "hero"
+  };
+  const solved = {1:false,2:false,3:false,4:false,5:false};
+
+  function normalize(val) {
+    return val.trim().toLowerCase().replace(/^flag\{|\}$/g, '');
+  }
+
+  function updateProgress() {
+    const n = Object.values(solved).filter(Boolean).length;
+    document.getElementById('prog-fill').style.width = (n / 5 * 100) + '%';
+    document.getElementById('prog-label').textContent = n + ' / 5 captured';
+    if (n === 5) setTimeout(() => { document.getElementById('victory').style.display = 'block'; document.getElementById('victory').scrollIntoView({behavior:'smooth'}); }, 500);
+  }
+
+  function check(stage) {
+    const raw = document.getElementById('i' + stage).value;
+    const val = normalize(raw);
+    const fb = document.getElementById('f' + stage);
+    if (val === answers[stage]) {
+      solved[stage] = true;
+      fb.className = 'feedback ok';
+      fb.textContent = '✓ Correct! Flag captured.';
+      document.getElementById('b' + stage).style.display = 'inline';
+      document.getElementById('s' + stage).classList.add('solved');
+      updateProgress();
+      const next = document.getElementById('s' + (stage + 1));
+      if (next) next.classList.remove('locked');
+    } else {
+      fb.className = 'feedback err';
+      if (!raw.toLowerCase().startsWith('flag{')) {
+        fb.textContent = '✗ Remember to wrap your answer: FLAG{yourword}';
+      } else {
+        fb.textContent = '✗ Not quite — try again or use the hint!';
+      }
+    }
+  }
+
+  function toggleHint(stage) {
+    const h = document.getElementById('h' + stage);
+    h.style.display = h.style.display === 'block' ? 'none' : 'block';
+  }
+
+  function updateCaesar() {
+    const cipher = "TFDUHB";
+    const shift = parseInt(document.getElementById('shift-slider').value);
+    document.getElementById('shift-val').textContent = shift;
+    let decoded = '';
+    for (const c of cipher) {
+      if (c >= 'A' && c <= 'Z') {
+        decoded += String.fromCharCode(((c.charCodeAt(0) - 65 - shift + 26) % 26) + 65);
+      } else {
+        decoded += c;
+      }
+    }
+    document.getElementById('caesar-out').textContent = decoded;
+  }
+
+  updateCaesar();
+</script>
 </body>
 </html>
